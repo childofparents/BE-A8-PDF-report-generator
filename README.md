@@ -76,3 +76,4 @@ I would move this work out of the request and into a background job when the gen
 The idempotency check protects against duplicate report generation (and wasted server resources) if a user double-clicks the "Generate report" button. One real-world example where a missing check like this costs money is mistakenly charging a customer's credit card twice for the exact same transaction, or generating and mailing two physical invoices.
 
 ## Generated pdf example screenshot
+![test pdf screenshot](screenshot.jpg)
