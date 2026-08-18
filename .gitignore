@@ -11,3 +11,5 @@ env/
 # Assignment specific directories
 cache/
 output/
+reports/
+report.db
