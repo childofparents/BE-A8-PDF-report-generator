@@ -120,33 +120,25 @@ def build_html(report_data, all_books):
     return html
 
 
-def render_to_pdf():
+def render_to_pdf(output_path="reports/test.pdf"):
     """Orchestrates data fetching, HTML building, and Playwright rendering."""
-    # Ensure reports directory exists
     os.makedirs("reports", exist_ok=True)
 
-    # 1. Query the data
     report_data = get_report_data()
     all_books = get_all_books()
-
-    # 2. Build the HTML
     html_content = build_html(report_data, all_books)
 
-    # 3. Render the PDF using Playwright
-    print("Launching Chromium to render PDF...")
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
         page.set_content(html_content)
         page.pdf(
-            path="reports/test.pdf",
+            path=output_path,
             format="A4",
             print_background=True,
             margin={"top": "20px", "bottom": "20px"}
         )
         browser.close()
-
-    print("Success! PDF saved to reports/test.pdf")
 
 
 if __name__ == "__main__":
